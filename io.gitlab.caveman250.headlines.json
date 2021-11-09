@@ -259,7 +259,7 @@
         {
           "type": "git",
           "url": "https://gitlab.gnome.org/GNOME/libadwaita.git",
-          "commit": "facaa00ccba548b31608d6d746f25fda1ba48af4"
+          "tag": "1.0.0.alpha.4"
         }
       ]
     },
@@ -269,7 +269,7 @@
         {
           "type": "git",
           "url": "https://gitlab.com/caveman250/headlines",
-          "tag": "0.4.0"
+          "tag": "0.4.1"
         }
       ],
       "buildsystem": "cmake-ninja",
