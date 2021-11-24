@@ -269,7 +269,7 @@
         {
           "type": "git",
           "url": "https://gitlab.com/caveman250/headlines",
-          "tag": "0.4.1"
+          "tag": "0.5.0"
         }
       ],
       "buildsystem": "cmake-ninja",
