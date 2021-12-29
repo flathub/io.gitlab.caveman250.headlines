@@ -1,4 +1,4 @@
-{
+{ 
   "app-id": "io.gitlab.caveman250.headlines",
   "runtime": "org.gnome.Platform",
   "runtime-version": "41",
