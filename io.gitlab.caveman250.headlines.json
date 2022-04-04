@@ -1,7 +1,7 @@
-{ 
+{
   "app-id": "io.gitlab.caveman250.headlines",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "41",
+  "runtime-version": "42",
   "sdk": "org.gnome.Sdk",
   "command": "headlines",
   "finish-args": [
@@ -52,8 +52,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://ftp.gnome.org/pub/GNOME/sources/glibmm/2.68/glibmm-2.68.1.tar.xz",
-          "sha256": "6664e27c9a9cca81c29e35687f49f2e0d173a2fc9e98c3428311f707db532f8c"
+          "url": "https://ftp.gnome.org/pub/GNOME/sources/glibmm/2.70/glibmm-2.70.0.tar.xz",
+          "sha256": "8008fd8aeddcc867a3f97f113de625f6e96ef98cf7860379813a9c0feffdb520"
         }
       ]
     },
@@ -74,8 +74,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://ftp.gnome.org/pub/GNOME/sources/pangomm/2.49/pangomm-2.49.1.tar.xz",
-          "sha256": "a2272883152618fddea016a62f50eb23b9b056ab3c08f3b64422591e6a507bd5"
+          "url": "https://ftp.gnome.org/pub/GNOME/sources/pangomm/2.50/pangomm-2.50.0.tar.xz",
+          "sha256": "a27aa77e017b9afce9e751d85bd1cf890abbb3a58bf59d0fac917eef82db3b5b"
         }
       ]
     },
@@ -96,8 +96,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://ftp.gnome.org/pub/GNOME/sources/gtkmm/4.2/gtkmm-4.2.0.tar.xz",
-          "sha256": "480c4c38f2e7ffcf58f56bb4b4d612f3f0cac9fd5908fd2cd8249fe10592a98b"
+          "url": "https://ftp.gnome.org/pub/GNOME/sources/gtkmm/4.4/gtkmm-4.4.0.tar.xz",
+          "sha256": "2eb464326096e6a40c82e9cd074164d8103fb5e07865679c0a649e4174700dda"
         }
       ]
     },
@@ -215,61 +215,12 @@
       ]
     },
     {
-      "name": "sassc",
-      "cleanup": [ "*" ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://github.com/sass/sassc.git",
-          "tag": "3.6.1"
-        },
-        {
-          "type": "script",
-          "dest-filename": "autogen.sh",
-          "commands": [ "autoreconf -si" ]
-        }
-      ],
-      "modules": [
-        {
-          "name": "libsass",
-          "cleanup": [ "*" ],
-          "sources": [
-            {
-              "type": "git",
-              "url": "https://github.com/sass/libsass.git",
-              "tag": "3.6.4"
-            },
-            {
-              "type": "script",
-              "dest-filename": "autogen.sh",
-              "commands": [ "autoreconf -si" ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name" : "libadwaita",
-      "buildsystem": "meson",
-      "config-opts" : [
-        "-Dexamples=false",
-        "-Dtests=false"
-      ],
-      "sources" : [
-        {
-          "type": "git",
-          "url": "https://gitlab.gnome.org/GNOME/libadwaita.git",
-          "tag": "1.0.0.alpha.4"
-        }
-      ]
-    },
-    {
       "name": "headlines",
       "sources": [
         {
           "type": "git",
           "url": "https://gitlab.com/caveman250/headlines",
-          "tag": "0.5.2"
+          "tag": "0.6.0"
         }
       ],
       "buildsystem": "cmake-ninja",
