@@ -220,7 +220,7 @@
         {
           "type": "git",
           "url": "https://gitlab.com/caveman250/headlines",
-          "tag": "0.6.0"
+          "tag": "0.7.0"
         }
       ],
       "buildsystem": "cmake-ninja",
