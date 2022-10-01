@@ -11,8 +11,21 @@
     "--socket=fallback-x11",
     "--socket=pulseaudio",
     "--device=dri",
-    "--talk-name=org.freedesktop.secrets"],
-  "cleanup": ["/include", "/lib/*/include", "/lib/pkgconfig", "/share/pkgconfig", "/share/aclocal", "/man", "/share/man", "/share/info", "/share/gtk-doc", "*.la", "*.a" ],
+    "--talk-name=org.freedesktop.secrets"
+  ],
+  "cleanup": [
+    "/include",
+    "/lib/*/include",
+    "/lib/pkgconfig",
+    "/share/pkgconfig",
+    "/share/aclocal",
+    "/man",
+    "/share/man",
+    "/share/info",
+    "/share/gtk-doc",
+    "*.la",
+    "*.a"
+  ],
   "add-extensions": {
     "org.freedesktop.Platform.ffmpeg-full": {
       "directory": "lib/ffmpeg",
@@ -26,7 +39,9 @@
   "modules": [
     {
       "name": "mm-common",
-      "cleanup": [ "*" ],
+      "cleanup": [
+        "*"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -37,7 +52,9 @@
     },
     {
       "name": "sigc++",
-      "config-opts": [ "--disable-documentation" ],
+      "config-opts": [
+        "--disable-documentation"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -104,8 +121,7 @@
     {
       "name": "jsoncpp",
       "buildsystem": "meson",
-      "sources":
-      [
+      "sources": [
         {
           "type": "git",
           "url": "https://github.com/open-source-parsers/jsoncpp",
@@ -115,8 +131,7 @@
     },
     {
       "name": "libmicrohttpd",
-      "sources":
-      [
+      "sources": [
         {
           "type": "archive",
           "url": "https://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-0.9.73.tar.gz",
@@ -144,8 +159,7 @@
     {
       "name": "websocketpp",
       "buildsystem": "cmake-ninja",
-      "sources":
-      [
+      "sources": [
         {
           "type": "git",
           "url": "https://github.com/zaphoyd/websocketpp",
@@ -182,6 +196,60 @@
       ]
     },
     {
+      "name": "gst-plugins-base",
+      "buildsystem": "meson",
+      "builddir": true,
+      "config-opts": [
+        "-Dgtk_doc=disabled",
+        "--prefix=/app",
+        "--buildtype=release",
+        "-Dopenh264=disabled"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-base.git",
+          "tag": "1.18.6"
+        }
+      ]
+    },
+    {
+      "name": "gst-plugins-good",
+      "buildsystem": "meson",
+      "builddir": true,
+      "config-opts": [
+        "-Dgtk_doc=disabled",
+        "--prefix=/app",
+        "--buildtype=release",
+        "-Dopenh264=disabled"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-good.git",
+          "tag": "1.18.6"
+        }
+      ]
+    },
+    {
+      "name": "gst-plugins-ugly",
+      "buildsystem": "meson",
+      "builddir": true,
+      "config-opts": [
+        "-Dgtk_doc=disabled",
+        "--prefix=/app",
+        "--buildtype=release",
+        "-Dopenh264=disabled"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-ugly.git",
+          "tag": "1.18.6"
+        }
+      ]
+    },
+    {
       "name": "gst-plugins-bad",
       "buildsystem": "meson",
       "builddir": true,
@@ -191,11 +259,12 @@
         "--buildtype=release",
         "-Dopenh264=disabled"
       ],
-      "sources": [{
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad.git",
-        "tag": "1.18.6"
-      }
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad.git",
+          "tag": "1.18.6"
+        }
       ]
     },
     {
@@ -207,11 +276,12 @@
         "--prefix=/app",
         "--buildtype=release"
       ],
-      "sources": [{
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/gstreamer/gst-libav.git",
-        "tag": "1.18.6"
-      }
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.freedesktop.org/gstreamer/gst-libav.git",
+          "tag": "1.18.6"
+        }
       ]
     },
     {
@@ -220,12 +290,11 @@
         {
           "type": "git",
           "url": "https://gitlab.com/caveman250/headlines",
-          "tag": "0.7.1"
+          "tag": "0.7.2"
         }
       ],
       "buildsystem": "cmake-ninja",
-      "config-opts":
-      [
+      "config-opts": [
         "-DFLATPAK_BUILD=ON",
         "-DDIST_BUILD=ON",
         "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
