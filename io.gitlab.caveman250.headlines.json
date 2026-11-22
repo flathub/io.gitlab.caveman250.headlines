@@ -1,304 +1,52 @@
 {
-  "app-id": "io.gitlab.caveman250.headlines",
-  "runtime": "org.gnome.Platform",
-  "runtime-version": "42",
-  "sdk": "org.gnome.Sdk",
-  "command": "headlines",
-  "finish-args": [
-    "--share=network",
-    "--share=ipc",
-    "--socket=wayland",
-    "--socket=fallback-x11",
-    "--socket=pulseaudio",
-    "--device=dri",
-    "--talk-name=org.freedesktop.secrets"
-  ],
-  "cleanup": [
-    "/include",
-    "/lib/*/include",
-    "/lib/pkgconfig",
-    "/share/pkgconfig",
-    "/share/aclocal",
-    "/man",
-    "/share/man",
-    "/share/info",
-    "/share/gtk-doc",
-    "*.la",
-    "*.a"
-  ],
-  "add-extensions": {
-    "org.freedesktop.Platform.ffmpeg-full": {
-      "directory": "lib/ffmpeg",
-      "version": "21.08",
-      "add-ld-path": "."
-    }
-  },
-  "cleanup-commands": [
-    "mkdir -p ${FLATPAK_DEST}/lib/ffmpeg"
-  ],
-  "modules": [
-    {
-      "name": "mm-common",
-      "cleanup": [
-        "*"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://ftp.gnome.org/pub/GNOME/sources/mm-common/1.0/mm-common-1.0.3.tar.xz",
-          "sha256": "e81596625899aacf1d0bf27ccc2fcc7f373405ec48735ca1c7273c0fbcdc1ef5"
-        }
-      ]
-    },
-    {
-      "name": "sigc++",
-      "config-opts": [
-        "--disable-documentation"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://ftp.gnome.org/pub/GNOME/sources/libsigc++/3.0/libsigc++-3.0.7.tar.xz",
-          "sha256": "bfbe91c0d094ea6bbc6cbd3909b7d98c6561eea8b6d9c0c25add906a6e83d733"
-        }
-      ]
-    },
-    {
-      "name": "glibmm",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://ftp.gnome.org/pub/GNOME/sources/glibmm/2.70/glibmm-2.70.0.tar.xz",
-          "sha256": "8008fd8aeddcc867a3f97f113de625f6e96ef98cf7860379813a9c0feffdb520"
-        }
-      ]
-    },
-    {
-      "name": "cairomm",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://cairographics.org/releases/cairomm-1.16.1.tar.xz",
-          "sha256": "6f6060d8e98dd4b8acfee2295fddbdd38cf487c07c26aad8d1a83bb9bff4a2c6"
-        }
-      ]
-    },
-    {
-      "name": "pangomm",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://ftp.gnome.org/pub/GNOME/sources/pangomm/2.50/pangomm-2.50.0.tar.xz",
-          "sha256": "a27aa77e017b9afce9e751d85bd1cf890abbb3a58bf59d0fac917eef82db3b5b"
-        }
-      ]
-    },
-    {
-      "name": "atkmm",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://ftp.gnome.org/pub/GNOME/sources/atkmm/2.36/atkmm-2.36.1.tar.xz",
-          "sha256": "e11324bfed1b6e330a02db25cecc145dca03fb0dff47f0710c85e317687da458"
-        }
-      ]
-    },
-    {
-      "name": "gtkmm",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://ftp.gnome.org/pub/GNOME/sources/gtkmm/4.4/gtkmm-4.4.0.tar.xz",
-          "sha256": "2eb464326096e6a40c82e9cd074164d8103fb5e07865679c0a649e4174700dda"
-        }
-      ]
-    },
-    {
-      "name": "jsoncpp",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://github.com/open-source-parsers/jsoncpp",
-          "tag": "1.9.4"
-        }
-      ]
-    },
-    {
-      "name": "libmicrohttpd",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-0.9.73.tar.gz",
-          "sha256": "a37b2f1b88fd1bfe74109586be463a434d34e773530fc2a74364cfcf734c032e"
-        }
-      ]
-    },
-    {
-      "name": "boost",
-      "buildsystem": "simple",
-      "build-commands": [
-        "cp -r ./boost /app/include/"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/boost/boost/1.74.0/boost_1_74_0.tar.bz2",
-          "sha256": "83bfc1507731a0906e387fc28b7ef5417d591429e51e788417fe9ff025e116b1"
-        }
-      ],
-      "cleanup": [
-        "/include"
-      ]
-    },
-    {
-      "name": "websocketpp",
-      "buildsystem": "cmake-ninja",
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://github.com/zaphoyd/websocketpp",
-          "tag": "0.8.2"
-        }
-      ]
-    },
-    {
-      "name": "youtube-dl",
-      "buildsystem": "simple",
-      "build-commands": [
-        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=/app \"youtube-dl\" --no-build-isolation"
-      ],
-      "sources": [
-        {
-          "type": "file",
-          "url": "https://files.pythonhosted.org/packages/94/a0/b8325b524700daae1c04a6156473ab7091d44071353f1d7c9e66b9c7f019/youtube_dl-2021.4.26.tar.gz",
-          "sha256": "6f311ffaf8b88cdcf27a2301a2272455e213bdb780aa447246933a3da4532879"
-        }
-      ]
-    },
-    {
-      "name": "x264",
-      "config-opts": [
-        "--enable-pic",
-        "--enable-shared"
-      ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://code.videolan.org/videolan/x264.git",
-          "commit": "bfc87b7a330f75f5c9a21e56081e4b20344f139e"
-        }
-      ]
-    },
-    {
-      "name": "gst-plugins-base",
-      "buildsystem": "meson",
-      "builddir": true,
-      "config-opts": [
-        "-Dgtk_doc=disabled",
-        "--prefix=/app",
-        "--buildtype=release",
-        "-Dopenh264=disabled"
-      ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-base.git",
-          "tag": "1.18.6"
-        }
-      ]
-    },
-    {
-      "name": "gst-plugins-good",
-      "buildsystem": "meson",
-      "builddir": true,
-      "config-opts": [
-        "-Dgtk_doc=disabled",
-        "--prefix=/app",
-        "--buildtype=release",
-        "-Dopenh264=disabled"
-      ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-good.git",
-          "tag": "1.18.6"
-        }
-      ]
-    },
-    {
-      "name": "gst-plugins-ugly",
-      "buildsystem": "meson",
-      "builddir": true,
-      "config-opts": [
-        "-Dgtk_doc=disabled",
-        "--prefix=/app",
-        "--buildtype=release",
-        "-Dopenh264=disabled"
-      ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-ugly.git",
-          "tag": "1.18.6"
-        }
-      ]
-    },
-    {
-      "name": "gst-plugins-bad",
-      "buildsystem": "meson",
-      "builddir": true,
-      "config-opts": [
-        "-Dgtk_doc=disabled",
-        "--prefix=/app",
-        "--buildtype=release",
-        "-Dopenh264=disabled"
-      ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad.git",
-          "tag": "1.18.6"
-        }
-      ]
-    },
-    {
-      "name": "gst-libav",
-      "buildsystem": "meson",
-      "builddir": true,
-      "config-opts": [
-        "-Dgtk_doc=disabled",
-        "--prefix=/app",
-        "--buildtype=release"
-      ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://gitlab.freedesktop.org/gstreamer/gst-libav.git",
-          "tag": "1.18.6"
-        }
-      ]
-    },
-    {
-      "name": "headlines",
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://gitlab.com/caveman250/headlines",
-          "tag": "0.7.2"
-        }
-      ],
-      "buildsystem": "cmake-ninja",
-      "config-opts": [
-        "-DFLATPAK_BUILD=ON",
-        "-DDIST_BUILD=ON",
-        "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
-      ]
-    }
-  ]
+	"app-id": "io.gitlab.caveman250.headlines",
+	"runtime": "org.gnome.Platform",
+	"runtime-version": "51",
+	"sdk": "org.gnome.Sdk",
+	"command": "headlines",
+	"finish-args": [
+		"--share=network",
+		"--share=ipc",
+		"--socket=wayland",
+		"--socket=fallback-x11",
+		"--socket=pulseaudio",
+		"--device=dri",
+		"--env=GST_PLUGIN_FEATURE_RANK=v4l2h264dec:NONE"
+	],
+	"cleanup": [
+		"/include",
+		"/lib/cmake",
+		"/lib/pkgconfig"
+	],
+	"modules": [
+		{
+			"name": "jsoncpp",
+			"buildsystem": "meson",
+			"sources": [
+				{
+					"type": "git",
+					"url": "https://github.com/open-source-parsers/jsoncpp.git",
+					"tag": "1.9.6",
+					"commit": "89e2973c754a9c02a49974d839779b151e95afd6"
+				}
+			]
+		},
+		{
+			"name": "headlines",
+			"buildsystem": "cmake-ninja",
+			"config-opts": [
+				"-DFLATPAK_BUILD=ON",
+				"-DDIST_BUILD=ON",
+				"-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+			],
+			"sources": [
+				{
+					"type": "git",
+					"url": "https://gitlab.com/caveman250/headlines",
+					"tag": "0.8.0",
+					"commit": "de139879772a666ee4d80397da8cc1da0c8d302e"
+				}
+			]
+		}
+	]
 }
